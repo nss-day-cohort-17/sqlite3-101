@@ -37,12 +37,35 @@ const populateEmployees = () => {
 // });
 
 
+// db.all returns an array of results from the sql query
 db.all(`SELECT * FROM employees`, (err, allRows) => {
-  allRows.forEach(( { id, first, last, department, salary } ) => {
-    console.log(`
-      ${id} ${first} ${last}
-      from ${department} Department.
-      Salary: ${salary}
-    `);
-  });
+  // Destructuring each object as they are being iterated over
+  // console.log(new Date().getMilliseconds())
+  // allRows.forEach(( { id, first, last, department, salary } ) => {
+  //   console.log(`
+  //     ${id} ${first} ${last}
+  //     from ${department} Department.
+  //     Salary: ${salary}
+  //   `);
+  // });
+
+  // Challenge 2: Javascript sorting fun - ES6 is awesome!!
+  // 1 - sort all records alphabetically by first name
+  // 2 - create a new array of all the employees that make more than 50000
+  // 3 - using this new array, create an array that says each persons first and last name, as well as their salary
 });
+
+
+// db.each(`SELECT * FROM employees`, (err, { id, first, last, department, salary }) => {
+//   console.log(`
+//     ${new Date().getMilliseconds()}
+//     ${id} ${first} ${last}
+//     from ${department} Department.
+//     Salary: ${salary}
+//   `);
+// });
+
+
+// Error handling
+// Modularize create table and drop table functions
+// Complet exercise 13
