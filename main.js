@@ -17,7 +17,6 @@ const createEmployeesTable = () => {
 
 // Populates employees table with employees.json
 const populateEmployees = () => {
-
   // Using the require method to import a json file
   const { list } = require('./employees.json');
 
@@ -31,17 +30,14 @@ const populateEmployees = () => {
       "${each.dept}"
     )`);
   })
-
 };
 // populateEmployees();
 
 
 // Boo - not good. Only returns first row from db
 db.get(`SELECT * FROM employees`, (err, { id, first, last, department, salary }) => {
-
   console.log('From dg.get:');
   console.log(`${id} ${first} ${last} ${department} ${salary}`);
-
 });
 
 
@@ -49,11 +45,10 @@ db.get(`SELECT * FROM employees`, (err, { id, first, last, department, salary })
 // The callback function for db.all will only execute once,
 // when the array of results returns
 db.all(`SELECT * FROM employees`, (err, allRows) => {
-
-    // Error handling
-    if (err) {
-      return console.log(err.toString());
-    }
+  // Error handling
+  if (err) {
+    return console.log(err.toString());
+  }
 
   console.log('Callback only fires once with db.all',new Date().getMilliseconds());
 
@@ -68,7 +63,7 @@ db.all(`SELECT * FROM employees`, (err, allRows) => {
   .map(each => `${each.first} ${each.last}s salary: ${each.salary} ${each.department}`)
   // Destructuring each object as they are being iterated over
   .forEach(each => console.log(`${each}`));
-
+  
 }); // Close db.all method
 
 
